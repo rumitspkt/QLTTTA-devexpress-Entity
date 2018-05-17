@@ -1,0 +1,1067 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TTTA_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BienLaiHocPhi">
+          <Key>
+            <PropertyRef Name="MaHocVien" />
+            <PropertyRef Name="MaLopHoc" />
+            <PropertyRef Name="MaKhoaHoc" />
+          </Key>
+          <Property Name="MaHocVien" Type="int" Nullable="false" />
+          <Property Name="MaLopHoc" Type="int" Nullable="false" />
+          <Property Name="MaKhoaHoc" Type="int" Nullable="false" />
+          <Property Name="HoaDon" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="DangNhap">
+          <Key>
+            <PropertyRef Name="Mail" />
+          </Key>
+          <Property Name="Mail" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MatKhau" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="QuyenDangNhap" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GiangVien">
+          <Key>
+            <PropertyRef Name="MaGV" />
+          </Key>
+          <Property Name="MaGV" Type="int" Nullable="false" />
+          <Property Name="TenGV" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NgaySinh" Type="date" Nullable="false" />
+          <Property Name="ThamNien" Type="int" Nullable="false" />
+          <Property Name="HocVi" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Luong" Type="int" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="HocVien">
+          <Key>
+            <PropertyRef Name="MaHV" />
+          </Key>
+          <Property Name="MaHV" Type="int" Nullable="false" />
+          <Property Name="HoTen" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NgaySinh" Type="date" Nullable="false" />
+          <Property Name="GioiTinh" Type="varchar" MaxLength="20" />
+          <Property Name="DiaChi" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SoDienThoai" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="KetQua">
+          <Key>
+            <PropertyRef Name="MaHocVien" />
+            <PropertyRef Name="MaLopHoc" />
+            <PropertyRef Name="MaKhoaHoc" />
+          </Key>
+          <Property Name="MaHocVien" Type="int" Nullable="false" />
+          <Property Name="MaLopHoc" Type="int" Nullable="false" />
+          <Property Name="MaKhoaHoc" Type="int" Nullable="false" />
+          <Property Name="DiemGiuaKy" Type="float" />
+          <Property Name="DiemCuoiKy" Type="float" />
+          <Property Name="DiemTB" Type="float" />
+        </EntityType>
+        <EntityType Name="KhoaHoc">
+          <Key>
+            <PropertyRef Name="MaKH" />
+          </Key>
+          <Property Name="MaKH" Type="int" Nullable="false" />
+          <Property Name="NgayBatDau" Type="date" Nullable="false" />
+          <Property Name="SoTuanHoc" Type="int" Nullable="false" />
+          <Property Name="TinhTrang" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="LopHoc">
+          <Key>
+            <PropertyRef Name="MaLH" />
+            <PropertyRef Name="KhoaHoc" />
+          </Key>
+          <Property Name="MaLH" Type="int" Nullable="false" />
+          <Property Name="KhoaHoc" Type="int" Nullable="false" />
+          <Property Name="MonHoc" Type="int" />
+          <Property Name="GiangVien" Type="int" />
+          <Property Name="CaHoc" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="NgayHoc" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SoLuongHV" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SoTien" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MonHoc">
+          <Key>
+            <PropertyRef Name="MaMH" />
+          </Key>
+          <Property Name="MaMH" Type="int" Nullable="false" />
+          <Property Name="TenMH" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SoGioHoc" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NhanVien">
+          <Key>
+            <PropertyRef Name="MaNV" />
+          </Key>
+          <Property Name="MaNV" Type="int" Nullable="false" />
+          <Property Name="TenNV" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NgaySinh" Type="date" Nullable="false" />
+          <Property Name="GioiTinh" Type="varchar" MaxLength="10" />
+          <Property Name="CMND" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Luong" Type="int" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK__BienLaiHo__MaHoc__4F7CD00D">
+          <End Role="HocVien" Type="Self.HocVien" Multiplicity="1" />
+          <End Role="BienLaiHocPhi" Type="Self.BienLaiHocPhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HocVien">
+              <PropertyRef Name="MaHV" />
+            </Principal>
+            <Dependent Role="BienLaiHocPhi">
+              <PropertyRef Name="MaHocVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BienLaiHocPhi__5070F446">
+          <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="1" />
+          <End Role="BienLaiHocPhi" Type="Self.BienLaiHocPhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LopHoc">
+              <PropertyRef Name="MaLH" />
+              <PropertyRef Name="KhoaHoc" />
+            </Principal>
+            <Dependent Role="BienLaiHocPhi">
+              <PropertyRef Name="MaLopHoc" />
+              <PropertyRef Name="MaKhoaHoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GiangVien__Mail__3E52440B">
+          <End Role="DangNhap" Type="Self.DangNhap" Multiplicity="0..1" />
+          <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DangNhap">
+              <PropertyRef Name="Mail" />
+            </Principal>
+            <Dependent Role="GiangVien">
+              <PropertyRef Name="Mail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KetQua__5441852A">
+          <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="1" />
+          <End Role="KetQua" Type="Self.KetQua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LopHoc">
+              <PropertyRef Name="MaLH" />
+              <PropertyRef Name="KhoaHoc" />
+            </Principal>
+            <Dependent Role="KetQua">
+              <PropertyRef Name="MaLopHoc" />
+              <PropertyRef Name="MaKhoaHoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KetQua__MaHocVie__534D60F1">
+          <End Role="HocVien" Type="Self.HocVien" Multiplicity="1" />
+          <End Role="KetQua" Type="Self.KetQua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HocVien">
+              <PropertyRef Name="MaHV" />
+            </Principal>
+            <Dependent Role="KetQua">
+              <PropertyRef Name="MaHocVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LopHoc__GiangVie__48CFD27E">
+          <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="0..1" />
+          <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiangVien">
+              <PropertyRef Name="MaGV" />
+            </Principal>
+            <Dependent Role="LopHoc">
+              <PropertyRef Name="GiangVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LopHoc__KhoaHoc__46E78A0C">
+          <End Role="KhoaHoc" Type="Self.KhoaHoc" Multiplicity="1" />
+          <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhoaHoc">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="LopHoc">
+              <PropertyRef Name="KhoaHoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LopHoc__MonHoc__47DBAE45">
+          <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="0..1" />
+          <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MonHoc">
+              <PropertyRef Name="MaMH" />
+            </Principal>
+            <Dependent Role="LopHoc">
+              <PropertyRef Name="MonHoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NhanVien__Mail__4316F928">
+          <End Role="DangNhap" Type="Self.DangNhap" Multiplicity="0..1" />
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DangNhap">
+              <PropertyRef Name="Mail" />
+            </Principal>
+            <Dependent Role="NhanVien">
+              <PropertyRef Name="Mail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CapNhatDangNhap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Mail" Type="varchar" Mode="In" />
+          <Parameter Name="MatKhau" Type="varchar" Mode="In" />
+          <Parameter Name="QuyenDangNhap" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CapNhatGiangVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaGV" Type="int" Mode="In" />
+          <Parameter Name="TenGV" Type="varchar" Mode="In" />
+          <Parameter Name="NgaySinh" Type="date" Mode="In" />
+          <Parameter Name="ThamNien" Type="int" Mode="In" />
+          <Parameter Name="HocVi" Type="varchar" Mode="In" />
+          <Parameter Name="Luong" Type="int" Mode="In" />
+          <Parameter Name="Mail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CapNhatHocVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaHV" Type="int" Mode="In" />
+          <Parameter Name="HoTen" Type="varchar" Mode="In" />
+          <Parameter Name="NgaySinh" Type="date" Mode="In" />
+          <Parameter Name="GioiTinh" Type="varchar" Mode="In" />
+          <Parameter Name="DiaChi" Type="varchar" Mode="In" />
+          <Parameter Name="SoDienThoai" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CapNhatKetQua" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaHocVien" Type="int" Mode="In" />
+          <Parameter Name="MaLopHoc" Type="int" Mode="In" />
+          <Parameter Name="MaKhoaHoc" Type="int" Mode="In" />
+          <Parameter Name="DiemGiuaKy" Type="float" Mode="In" />
+          <Parameter Name="DiemCuoiKy" Type="float" Mode="In" />
+          <Parameter Name="DiemTB" Type="float" Mode="In" />
+        </Function>
+        <Function Name="CapNhatKhoaHoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaKH" Type="int" Mode="In" />
+          <Parameter Name="NgayBatDau" Type="date" Mode="In" />
+          <Parameter Name="SoTuanHoc" Type="int" Mode="In" />
+          <Parameter Name="TinhTrang" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CapNhatLopHoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaLH" Type="int" Mode="In" />
+          <Parameter Name="KhoaHoc" Type="int" Mode="In" />
+          <Parameter Name="MonHoc" Type="int" Mode="In" />
+          <Parameter Name="GiangVien" Type="int" Mode="In" />
+          <Parameter Name="CaHoc" Type="varchar" Mode="In" />
+          <Parameter Name="NgayHoc" Type="varchar" Mode="In" />
+          <Parameter Name="SoLuongHV" Type="varchar" Mode="In" />
+          <Parameter Name="SoTien" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CapNhatMonHoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaMH" Type="int" Mode="In" />
+          <Parameter Name="TenMH" Type="varchar" Mode="In" />
+          <Parameter Name="SoGioHoc" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CapNhatNhanVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNV" Type="int" Mode="In" />
+          <Parameter Name="TenNV" Type="varchar" Mode="In" />
+          <Parameter Name="NgaySinh" Type="date" Mode="In" />
+          <Parameter Name="GioiTinh" Type="varchar" Mode="In" />
+          <Parameter Name="CMND" Type="varchar" Mode="In" />
+          <Parameter Name="Luong" Type="int" Mode="In" />
+          <Parameter Name="Mail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="KiemTraDangNhap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="i_Mail" Type="varchar" Mode="In" />
+          <Parameter Name="i_MatKhau" Type="varchar" Mode="In" />
+          <Parameter Name="i_Quyen" Type="varchar" Mode="In" />
+          <Parameter Name="o_Mail" Type="varchar" Mode="In" />
+          <Parameter Name="o_MatKhau" Type="varchar" Mode="In" />
+          <Parameter Name="o_Quyen" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="NhanVienNu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="MaNV" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ThemBienLai" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaHocVien" Type="int" Mode="In" />
+          <Parameter Name="MaLopHoc" Type="int" Mode="In" />
+          <Parameter Name="MaKhoaHoc" Type="int" Mode="In" />
+          <Parameter Name="HoaDon" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ThemDangNhap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Mail" Type="varchar" Mode="In" />
+          <Parameter Name="MatKhau" Type="varchar" Mode="In" />
+          <Parameter Name="QuyenDangNhap" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ThemGiangVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaGV" Type="int" Mode="In" />
+          <Parameter Name="TenGV" Type="varchar" Mode="In" />
+          <Parameter Name="NgaySinh" Type="date" Mode="In" />
+          <Parameter Name="ThamNien" Type="int" Mode="In" />
+          <Parameter Name="HocVi" Type="varchar" Mode="In" />
+          <Parameter Name="Luong" Type="int" Mode="In" />
+          <Parameter Name="Mail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ThemHocVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaHV" Type="int" Mode="In" />
+          <Parameter Name="HoTen" Type="varchar" Mode="In" />
+          <Parameter Name="NgaySinh" Type="date" Mode="In" />
+          <Parameter Name="GioiTinh" Type="varchar" Mode="In" />
+          <Parameter Name="DiaChi" Type="varchar" Mode="In" />
+          <Parameter Name="SoDienThoai" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ThemKetQua" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaHocVien" Type="int" Mode="In" />
+          <Parameter Name="MaLopHoc" Type="int" Mode="In" />
+          <Parameter Name="MaKhoaHoc" Type="int" Mode="In" />
+          <Parameter Name="DiemGiuaKy" Type="float" Mode="In" />
+          <Parameter Name="DiemCuoiKy" Type="float" Mode="In" />
+          <Parameter Name="DiemTB" Type="float" Mode="In" />
+        </Function>
+        <Function Name="ThemKhoaHoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaKH" Type="int" Mode="In" />
+          <Parameter Name="NgayBatDau" Type="date" Mode="In" />
+          <Parameter Name="SoTuanHoc" Type="int" Mode="In" />
+          <Parameter Name="TinhTrang" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ThemLopHoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaLH" Type="int" Mode="In" />
+          <Parameter Name="KhoaHoc" Type="int" Mode="In" />
+          <Parameter Name="MonHoc" Type="int" Mode="In" />
+          <Parameter Name="GiangVien" Type="int" Mode="In" />
+          <Parameter Name="CaHoc" Type="varchar" Mode="In" />
+          <Parameter Name="NgayHoc" Type="varchar" Mode="In" />
+          <Parameter Name="SoLuongHV" Type="varchar" Mode="In" />
+          <Parameter Name="SoTien" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ThemMonHoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaMH" Type="int" Mode="In" />
+          <Parameter Name="TenMH" Type="varchar" Mode="In" />
+          <Parameter Name="SoGioHoc" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ThemNhanVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNV" Type="int" Mode="In" />
+          <Parameter Name="TenNV" Type="varchar" Mode="In" />
+          <Parameter Name="NgaySinh" Type="date" Mode="In" />
+          <Parameter Name="GioiTinh" Type="varchar" Mode="In" />
+          <Parameter Name="CMND" Type="varchar" Mode="In" />
+          <Parameter Name="Luong" Type="int" Mode="In" />
+          <Parameter Name="Mail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ThongKeHocVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="MaKH" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TimGiangVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="MaGV" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TimNhanVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="MaNV" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TinhDiemTB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="DiemGiuaKy" Type="float" Mode="In" />
+          <Parameter Name="DiemCuoiKy" Type="float" Mode="In" />
+        </Function>
+        <Function Name="TinhTongDoanhThu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="MaKH" Type="int" Mode="In" />
+        </Function>
+        <Function Name="XoaBienLai" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaHocVien" Type="int" Mode="In" />
+          <Parameter Name="MaLopHoc" Type="int" Mode="In" />
+          <Parameter Name="MaKhoaHoc" Type="int" Mode="In" />
+        </Function>
+        <Function Name="XoaDangNhap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Mail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="XoaGiangVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaGV" Type="int" Mode="In" />
+        </Function>
+        <Function Name="XoaHocVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaHV" Type="int" Mode="In" />
+        </Function>
+        <Function Name="XoaKetQua" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaHocVien" Type="int" Mode="In" />
+          <Parameter Name="MaLopHoc" Type="int" Mode="In" />
+          <Parameter Name="MaKhoaHoc" Type="int" Mode="In" />
+        </Function>
+        <Function Name="XoaKhoaHoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaKH" Type="int" Mode="In" />
+        </Function>
+        <Function Name="XoaLopHoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaLH" Type="int" Mode="In" />
+          <Parameter Name="KhoaHoc" Type="int" Mode="In" />
+        </Function>
+        <Function Name="XoaMonHoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaMH" Type="int" Mode="In" />
+        </Function>
+        <Function Name="XoaNhanVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNV" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="TTTA_DBModelStoreContainer">
+          <EntitySet Name="BienLaiHocPhi" EntityType="Self.BienLaiHocPhi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DangNhap" EntityType="Self.DangNhap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GiangVien" EntityType="Self.GiangVien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HocVien" EntityType="Self.HocVien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KetQua" EntityType="Self.KetQua" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KhoaHoc" EntityType="Self.KhoaHoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LopHoc" EntityType="Self.LopHoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MonHoc" EntityType="Self.MonHoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__BienLaiHo__MaHoc__4F7CD00D" Association="Self.FK__BienLaiHo__MaHoc__4F7CD00D">
+            <End Role="HocVien" EntitySet="HocVien" />
+            <End Role="BienLaiHocPhi" EntitySet="BienLaiHocPhi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BienLaiHocPhi__5070F446" Association="Self.FK__BienLaiHocPhi__5070F446">
+            <End Role="LopHoc" EntitySet="LopHoc" />
+            <End Role="BienLaiHocPhi" EntitySet="BienLaiHocPhi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GiangVien__Mail__3E52440B" Association="Self.FK__GiangVien__Mail__3E52440B">
+            <End Role="DangNhap" EntitySet="DangNhap" />
+            <End Role="GiangVien" EntitySet="GiangVien" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KetQua__5441852A" Association="Self.FK__KetQua__5441852A">
+            <End Role="LopHoc" EntitySet="LopHoc" />
+            <End Role="KetQua" EntitySet="KetQua" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KetQua__MaHocVie__534D60F1" Association="Self.FK__KetQua__MaHocVie__534D60F1">
+            <End Role="HocVien" EntitySet="HocVien" />
+            <End Role="KetQua" EntitySet="KetQua" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LopHoc__GiangVie__48CFD27E" Association="Self.FK__LopHoc__GiangVie__48CFD27E">
+            <End Role="GiangVien" EntitySet="GiangVien" />
+            <End Role="LopHoc" EntitySet="LopHoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LopHoc__KhoaHoc__46E78A0C" Association="Self.FK__LopHoc__KhoaHoc__46E78A0C">
+            <End Role="KhoaHoc" EntitySet="KhoaHoc" />
+            <End Role="LopHoc" EntitySet="LopHoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LopHoc__MonHoc__47DBAE45" Association="Self.FK__LopHoc__MonHoc__47DBAE45">
+            <End Role="MonHoc" EntitySet="MonHoc" />
+            <End Role="LopHoc" EntitySet="LopHoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NhanVien__Mail__4316F928" Association="Self.FK__NhanVien__Mail__4316F928">
+            <End Role="DangNhap" EntitySet="DangNhap" />
+            <End Role="NhanVien" EntitySet="NhanVien" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TTTA_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BienLaiHocPhi">
+          <Key>
+            <PropertyRef Name="MaHocVien" />
+            <PropertyRef Name="MaLopHoc" />
+            <PropertyRef Name="MaKhoaHoc" />
+          </Key>
+          <Property Name="MaHocVien" Type="Int32" Nullable="false" />
+          <Property Name="MaLopHoc" Type="Int32" Nullable="false" />
+          <Property Name="MaKhoaHoc" Type="Int32" Nullable="false" />
+          <Property Name="HoaDon" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HocVien" Relationship="Self.FK__BienLaiHo__MaHoc__4F7CD00D" FromRole="BienLaiHocPhi" ToRole="HocVien" />
+          <NavigationProperty Name="LopHoc" Relationship="Self.FK__BienLaiHocPhi__5070F446" FromRole="BienLaiHocPhi" ToRole="LopHoc" />
+        </EntityType>
+        <EntityType Name="DangNhap">
+          <Key>
+            <PropertyRef Name="Mail" />
+          </Key>
+          <Property Name="Mail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MatKhau" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuyenDangNhap" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="GiangViens" Relationship="Self.FK__GiangVien__Mail__3E52440B" FromRole="DangNhap" ToRole="GiangVien" />
+          <NavigationProperty Name="NhanViens" Relationship="Self.FK__NhanVien__Mail__4316F928" FromRole="DangNhap" ToRole="NhanVien" />
+        </EntityType>
+        <EntityType Name="GiangVien">
+          <Key>
+            <PropertyRef Name="MaGV" />
+          </Key>
+          <Property Name="MaGV" Type="Int32" Nullable="false" />
+          <Property Name="TenGV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ThamNien" Type="Int32" Nullable="false" />
+          <Property Name="HocVi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Luong" Type="Int32" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DangNhap" Relationship="Self.FK__GiangVien__Mail__3E52440B" FromRole="GiangVien" ToRole="DangNhap" />
+          <NavigationProperty Name="LopHocs" Relationship="Self.FK__LopHoc__GiangVie__48CFD27E" FromRole="GiangVien" ToRole="LopHoc" />
+        </EntityType>
+        <EntityType Name="HocVien">
+          <Key>
+            <PropertyRef Name="MaHV" />
+          </Key>
+          <Property Name="MaHV" Type="Int32" Nullable="false" />
+          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="GioiTinh" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DiaChi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BienLaiHocPhis" Relationship="Self.FK__BienLaiHo__MaHoc__4F7CD00D" FromRole="HocVien" ToRole="BienLaiHocPhi" />
+          <NavigationProperty Name="KetQuas" Relationship="Self.FK__KetQua__MaHocVie__534D60F1" FromRole="HocVien" ToRole="KetQua" />
+        </EntityType>
+        <EntityType Name="KetQua">
+          <Key>
+            <PropertyRef Name="MaHocVien" />
+            <PropertyRef Name="MaLopHoc" />
+            <PropertyRef Name="MaKhoaHoc" />
+          </Key>
+          <Property Name="MaHocVien" Type="Int32" Nullable="false" />
+          <Property Name="MaLopHoc" Type="Int32" Nullable="false" />
+          <Property Name="MaKhoaHoc" Type="Int32" Nullable="false" />
+          <Property Name="DiemGiuaKy" Type="Double" />
+          <Property Name="DiemCuoiKy" Type="Double" />
+          <Property Name="DiemTB" Type="Double" />
+          <NavigationProperty Name="HocVien" Relationship="Self.FK__KetQua__MaHocVie__534D60F1" FromRole="KetQua" ToRole="HocVien" />
+          <NavigationProperty Name="LopHoc" Relationship="Self.FK__KetQua__5441852A" FromRole="KetQua" ToRole="LopHoc" />
+        </EntityType>
+        <EntityType Name="KhoaHoc">
+          <Key>
+            <PropertyRef Name="MaKH" />
+          </Key>
+          <Property Name="MaKH" Type="Int32" Nullable="false" />
+          <Property Name="NgayBatDau" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SoTuanHoc" Type="Int32" Nullable="false" />
+          <Property Name="TinhTrang" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LopHocs" Relationship="Self.FK__LopHoc__KhoaHoc__46E78A0C" FromRole="KhoaHoc" ToRole="LopHoc" />
+        </EntityType>
+        <EntityType Name="LopHoc">
+          <Key>
+            <PropertyRef Name="MaLH" />
+            <PropertyRef Name="KhoaHoc" />
+          </Key>
+          <Property Name="MaLH" Type="Int32" Nullable="false" />
+          <Property Name="KhoaHoc" Type="Int32" Nullable="false" />
+          <Property Name="MonHoc" Type="Int32" />
+          <Property Name="GiangVien" Type="Int32" />
+          <Property Name="CaHoc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NgayHoc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SoLuongHV" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SoTien" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BienLaiHocPhis" Relationship="Self.FK__BienLaiHocPhi__5070F446" FromRole="LopHoc" ToRole="BienLaiHocPhi" />
+          <NavigationProperty Name="GiangVien1" Relationship="Self.FK__LopHoc__GiangVie__48CFD27E" FromRole="LopHoc" ToRole="GiangVien" />
+          <NavigationProperty Name="KetQuas" Relationship="Self.FK__KetQua__5441852A" FromRole="LopHoc" ToRole="KetQua" />
+          <NavigationProperty Name="KhoaHoc1" Relationship="Self.FK__LopHoc__KhoaHoc__46E78A0C" FromRole="LopHoc" ToRole="KhoaHoc" />
+          <NavigationProperty Name="MonHoc1" Relationship="Self.FK__LopHoc__MonHoc__47DBAE45" FromRole="LopHoc" ToRole="MonHoc" />
+        </EntityType>
+        <EntityType Name="MonHoc">
+          <Key>
+            <PropertyRef Name="MaMH" />
+          </Key>
+          <Property Name="MaMH" Type="Int32" Nullable="false" />
+          <Property Name="TenMH" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SoGioHoc" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LopHocs" Relationship="Self.FK__LopHoc__MonHoc__47DBAE45" FromRole="MonHoc" ToRole="LopHoc" />
+        </EntityType>
+        <EntityType Name="NhanVien">
+          <Key>
+            <PropertyRef Name="MaNV" />
+          </Key>
+          <Property Name="MaNV" Type="Int32" Nullable="false" />
+          <Property Name="TenNV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CMND" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Luong" Type="Int32" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DangNhap" Relationship="Self.FK__NhanVien__Mail__4316F928" FromRole="NhanVien" ToRole="DangNhap" />
+        </EntityType>
+        <Association Name="FK__BienLaiHo__MaHoc__4F7CD00D">
+          <End Role="HocVien" Type="Self.HocVien" Multiplicity="1" />
+          <End Role="BienLaiHocPhi" Type="Self.BienLaiHocPhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HocVien">
+              <PropertyRef Name="MaHV" />
+            </Principal>
+            <Dependent Role="BienLaiHocPhi">
+              <PropertyRef Name="MaHocVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BienLaiHocPhi__5070F446">
+          <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="1" />
+          <End Role="BienLaiHocPhi" Type="Self.BienLaiHocPhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LopHoc">
+              <PropertyRef Name="MaLH" />
+              <PropertyRef Name="KhoaHoc" />
+            </Principal>
+            <Dependent Role="BienLaiHocPhi">
+              <PropertyRef Name="MaLopHoc" />
+              <PropertyRef Name="MaKhoaHoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GiangVien__Mail__3E52440B">
+          <End Role="DangNhap" Type="Self.DangNhap" Multiplicity="0..1" />
+          <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DangNhap">
+              <PropertyRef Name="Mail" />
+            </Principal>
+            <Dependent Role="GiangVien">
+              <PropertyRef Name="Mail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NhanVien__Mail__4316F928">
+          <End Role="DangNhap" Type="Self.DangNhap" Multiplicity="0..1" />
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DangNhap">
+              <PropertyRef Name="Mail" />
+            </Principal>
+            <Dependent Role="NhanVien">
+              <PropertyRef Name="Mail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LopHoc__GiangVie__48CFD27E">
+          <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="0..1" />
+          <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiangVien">
+              <PropertyRef Name="MaGV" />
+            </Principal>
+            <Dependent Role="LopHoc">
+              <PropertyRef Name="GiangVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KetQua__MaHocVie__534D60F1">
+          <End Role="HocVien" Type="Self.HocVien" Multiplicity="1" />
+          <End Role="KetQua" Type="Self.KetQua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HocVien">
+              <PropertyRef Name="MaHV" />
+            </Principal>
+            <Dependent Role="KetQua">
+              <PropertyRef Name="MaHocVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KetQua__5441852A">
+          <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="1" />
+          <End Role="KetQua" Type="Self.KetQua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LopHoc">
+              <PropertyRef Name="MaLH" />
+              <PropertyRef Name="KhoaHoc" />
+            </Principal>
+            <Dependent Role="KetQua">
+              <PropertyRef Name="MaLopHoc" />
+              <PropertyRef Name="MaKhoaHoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LopHoc__KhoaHoc__46E78A0C">
+          <End Role="KhoaHoc" Type="Self.KhoaHoc" Multiplicity="1" />
+          <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhoaHoc">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="LopHoc">
+              <PropertyRef Name="KhoaHoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LopHoc__MonHoc__47DBAE45">
+          <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="0..1" />
+          <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MonHoc">
+              <PropertyRef Name="MaMH" />
+            </Principal>
+            <Dependent Role="LopHoc">
+              <PropertyRef Name="MonHoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TTTA_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BienLaiHocPhis" EntityType="Self.BienLaiHocPhi" />
+          <EntitySet Name="DangNhaps" EntityType="Self.DangNhap" />
+          <EntitySet Name="GiangViens" EntityType="Self.GiangVien" />
+          <EntitySet Name="HocViens" EntityType="Self.HocVien" />
+          <EntitySet Name="KetQuas" EntityType="Self.KetQua" />
+          <EntitySet Name="KhoaHocs" EntityType="Self.KhoaHoc" />
+          <EntitySet Name="LopHocs" EntityType="Self.LopHoc" />
+          <EntitySet Name="MonHocs" EntityType="Self.MonHoc" />
+          <EntitySet Name="NhanViens" EntityType="Self.NhanVien" />
+          <AssociationSet Name="FK__BienLaiHo__MaHoc__4F7CD00D" Association="Self.FK__BienLaiHo__MaHoc__4F7CD00D">
+            <End Role="HocVien" EntitySet="HocViens" />
+            <End Role="BienLaiHocPhi" EntitySet="BienLaiHocPhis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BienLaiHocPhi__5070F446" Association="Self.FK__BienLaiHocPhi__5070F446">
+            <End Role="LopHoc" EntitySet="LopHocs" />
+            <End Role="BienLaiHocPhi" EntitySet="BienLaiHocPhis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GiangVien__Mail__3E52440B" Association="Self.FK__GiangVien__Mail__3E52440B">
+            <End Role="DangNhap" EntitySet="DangNhaps" />
+            <End Role="GiangVien" EntitySet="GiangViens" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NhanVien__Mail__4316F928" Association="Self.FK__NhanVien__Mail__4316F928">
+            <End Role="DangNhap" EntitySet="DangNhaps" />
+            <End Role="NhanVien" EntitySet="NhanViens" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LopHoc__GiangVie__48CFD27E" Association="Self.FK__LopHoc__GiangVie__48CFD27E">
+            <End Role="GiangVien" EntitySet="GiangViens" />
+            <End Role="LopHoc" EntitySet="LopHocs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KetQua__MaHocVie__534D60F1" Association="Self.FK__KetQua__MaHocVie__534D60F1">
+            <End Role="HocVien" EntitySet="HocViens" />
+            <End Role="KetQua" EntitySet="KetQuas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KetQua__5441852A" Association="Self.FK__KetQua__5441852A">
+            <End Role="LopHoc" EntitySet="LopHocs" />
+            <End Role="KetQua" EntitySet="KetQuas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LopHoc__KhoaHoc__46E78A0C" Association="Self.FK__LopHoc__KhoaHoc__46E78A0C">
+            <End Role="KhoaHoc" EntitySet="KhoaHocs" />
+            <End Role="LopHoc" EntitySet="LopHocs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LopHoc__MonHoc__47DBAE45" Association="Self.FK__LopHoc__MonHoc__47DBAE45">
+            <End Role="MonHoc" EntitySet="MonHocs" />
+            <End Role="LopHoc" EntitySet="LopHocs" />
+          </AssociationSet>
+          <FunctionImport Name="CapNhatDangNhap">
+            <Parameter Name="Mail" Mode="In" Type="String" />
+            <Parameter Name="MatKhau" Mode="In" Type="String" />
+            <Parameter Name="QuyenDangNhap" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CapNhatGiangVien">
+            <Parameter Name="MaGV" Mode="In" Type="Int32" />
+            <Parameter Name="TenGV" Mode="In" Type="String" />
+            <Parameter Name="NgaySinh" Mode="In" Type="DateTime" />
+            <Parameter Name="ThamNien" Mode="In" Type="Int32" />
+            <Parameter Name="HocVi" Mode="In" Type="String" />
+            <Parameter Name="Luong" Mode="In" Type="Int32" />
+            <Parameter Name="Mail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CapNhatHocVien">
+            <Parameter Name="MaHV" Mode="In" Type="Int32" />
+            <Parameter Name="HoTen" Mode="In" Type="String" />
+            <Parameter Name="NgaySinh" Mode="In" Type="DateTime" />
+            <Parameter Name="GioiTinh" Mode="In" Type="String" />
+            <Parameter Name="DiaChi" Mode="In" Type="String" />
+            <Parameter Name="SoDienThoai" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CapNhatKetQua">
+            <Parameter Name="MaHocVien" Mode="In" Type="Int32" />
+            <Parameter Name="MaLopHoc" Mode="In" Type="Int32" />
+            <Parameter Name="MaKhoaHoc" Mode="In" Type="Int32" />
+            <Parameter Name="DiemGiuaKy" Mode="In" Type="Double" />
+            <Parameter Name="DiemCuoiKy" Mode="In" Type="Double" />
+            <Parameter Name="DiemTB" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="CapNhatKhoaHoc">
+            <Parameter Name="MaKH" Mode="In" Type="Int32" />
+            <Parameter Name="NgayBatDau" Mode="In" Type="DateTime" />
+            <Parameter Name="SoTuanHoc" Mode="In" Type="Int32" />
+            <Parameter Name="TinhTrang" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CapNhatLopHoc">
+            <Parameter Name="MaLH" Mode="In" Type="Int32" />
+            <Parameter Name="KhoaHoc" Mode="In" Type="Int32" />
+            <Parameter Name="MonHoc" Mode="In" Type="Int32" />
+            <Parameter Name="GiangVien" Mode="In" Type="Int32" />
+            <Parameter Name="CaHoc" Mode="In" Type="String" />
+            <Parameter Name="NgayHoc" Mode="In" Type="String" />
+            <Parameter Name="SoLuongHV" Mode="In" Type="String" />
+            <Parameter Name="SoTien" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CapNhatMonHoc">
+            <Parameter Name="MaMH" Mode="In" Type="Int32" />
+            <Parameter Name="TenMH" Mode="In" Type="String" />
+            <Parameter Name="SoGioHoc" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CapNhatNhanVien">
+            <Parameter Name="MaNV" Mode="In" Type="Int32" />
+            <Parameter Name="TenNV" Mode="In" Type="String" />
+            <Parameter Name="NgaySinh" Mode="In" Type="DateTime" />
+            <Parameter Name="GioiTinh" Mode="In" Type="String" />
+            <Parameter Name="CMND" Mode="In" Type="String" />
+            <Parameter Name="Luong" Mode="In" Type="Int32" />
+            <Parameter Name="Mail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="KiemTraDangNhap" ReturnType="Collection(TTTA_DBModel.KiemTraDangNhap_Result)">
+            <Parameter Name="i_Mail" Mode="In" Type="String" />
+            <Parameter Name="i_MatKhau" Mode="In" Type="String" />
+            <Parameter Name="i_Quyen" Mode="In" Type="String" />
+            <Parameter Name="o_Mail" Mode="In" Type="String" />
+            <Parameter Name="o_MatKhau" Mode="In" Type="String" />
+            <Parameter Name="o_Quyen" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ThemBienLai">
+            <Parameter Name="MaHocVien" Mode="In" Type="Int32" />
+            <Parameter Name="MaLopHoc" Mode="In" Type="Int32" />
+            <Parameter Name="MaKhoaHoc" Mode="In" Type="Int32" />
+            <Parameter Name="HoaDon" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ThemDangNhap">
+            <Parameter Name="Mail" Mode="In" Type="String" />
+            <Parameter Name="MatKhau" Mode="In" Type="String" />
+            <Parameter Name="QuyenDangNhap" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ThemGiangVien">
+            <Parameter Name="MaGV" Mode="In" Type="Int32" />
+            <Parameter Name="TenGV" Mode="In" Type="String" />
+            <Parameter Name="NgaySinh" Mode="In" Type="DateTime" />
+            <Parameter Name="ThamNien" Mode="In" Type="Int32" />
+            <Parameter Name="HocVi" Mode="In" Type="String" />
+            <Parameter Name="Luong" Mode="In" Type="Int32" />
+            <Parameter Name="Mail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ThemHocVien">
+            <Parameter Name="MaHV" Mode="In" Type="Int32" />
+            <Parameter Name="HoTen" Mode="In" Type="String" />
+            <Parameter Name="NgaySinh" Mode="In" Type="DateTime" />
+            <Parameter Name="GioiTinh" Mode="In" Type="String" />
+            <Parameter Name="DiaChi" Mode="In" Type="String" />
+            <Parameter Name="SoDienThoai" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ThemKetQua">
+            <Parameter Name="MaHocVien" Mode="In" Type="Int32" />
+            <Parameter Name="MaLopHoc" Mode="In" Type="Int32" />
+            <Parameter Name="MaKhoaHoc" Mode="In" Type="Int32" />
+            <Parameter Name="DiemGiuaKy" Mode="In" Type="Double" />
+            <Parameter Name="DiemCuoiKy" Mode="In" Type="Double" />
+            <Parameter Name="DiemTB" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="ThemKhoaHoc">
+            <Parameter Name="MaKH" Mode="In" Type="Int32" />
+            <Parameter Name="NgayBatDau" Mode="In" Type="DateTime" />
+            <Parameter Name="SoTuanHoc" Mode="In" Type="Int32" />
+            <Parameter Name="TinhTrang" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ThemLopHoc">
+            <Parameter Name="MaLH" Mode="In" Type="Int32" />
+            <Parameter Name="KhoaHoc" Mode="In" Type="Int32" />
+            <Parameter Name="MonHoc" Mode="In" Type="Int32" />
+            <Parameter Name="GiangVien" Mode="In" Type="Int32" />
+            <Parameter Name="CaHoc" Mode="In" Type="String" />
+            <Parameter Name="NgayHoc" Mode="In" Type="String" />
+            <Parameter Name="SoLuongHV" Mode="In" Type="String" />
+            <Parameter Name="SoTien" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ThemMonHoc">
+            <Parameter Name="MaMH" Mode="In" Type="Int32" />
+            <Parameter Name="TenMH" Mode="In" Type="String" />
+            <Parameter Name="SoGioHoc" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ThemNhanVien">
+            <Parameter Name="MaNV" Mode="In" Type="Int32" />
+            <Parameter Name="TenNV" Mode="In" Type="String" />
+            <Parameter Name="NgaySinh" Mode="In" Type="DateTime" />
+            <Parameter Name="GioiTinh" Mode="In" Type="String" />
+            <Parameter Name="CMND" Mode="In" Type="String" />
+            <Parameter Name="Luong" Mode="In" Type="Int32" />
+            <Parameter Name="Mail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="XoaBienLai">
+            <Parameter Name="MaHocVien" Mode="In" Type="Int32" />
+            <Parameter Name="MaLopHoc" Mode="In" Type="Int32" />
+            <Parameter Name="MaKhoaHoc" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="XoaDangNhap">
+            <Parameter Name="Mail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="XoaGiangVien">
+            <Parameter Name="MaGV" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="XoaHocVien">
+            <Parameter Name="MaHV" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="XoaKetQua">
+            <Parameter Name="MaHocVien" Mode="In" Type="Int32" />
+            <Parameter Name="MaLopHoc" Mode="In" Type="Int32" />
+            <Parameter Name="MaKhoaHoc" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="XoaKhoaHoc">
+            <Parameter Name="MaKH" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="XoaLopHoc">
+            <Parameter Name="MaLH" Mode="In" Type="Int32" />
+            <Parameter Name="KhoaHoc" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="XoaMonHoc">
+            <Parameter Name="MaMH" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="XoaNhanVien">
+            <Parameter Name="MaNV" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="KiemTraDangNhap_Result">
+          <Property Type="String" Name="o_Mail" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="o_MatKhau" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="o_Quyen" Nullable="false" MaxLength="20" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TTTA_DBModelStoreContainer" CdmEntityContainer="TTTA_DBEntities">
+          <EntitySetMapping Name="BienLaiHocPhis">
+            <EntityTypeMapping TypeName="TTTA_DBModel.BienLaiHocPhi">
+              <MappingFragment StoreEntitySet="BienLaiHocPhi">
+                <ScalarProperty Name="MaHocVien" ColumnName="MaHocVien" />
+                <ScalarProperty Name="MaLopHoc" ColumnName="MaLopHoc" />
+                <ScalarProperty Name="MaKhoaHoc" ColumnName="MaKhoaHoc" />
+                <ScalarProperty Name="HoaDon" ColumnName="HoaDon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DangNhaps">
+            <EntityTypeMapping TypeName="TTTA_DBModel.DangNhap">
+              <MappingFragment StoreEntitySet="DangNhap">
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="QuyenDangNhap" ColumnName="QuyenDangNhap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GiangViens">
+            <EntityTypeMapping TypeName="TTTA_DBModel.GiangVien">
+              <MappingFragment StoreEntitySet="GiangVien">
+                <ScalarProperty Name="MaGV" ColumnName="MaGV" />
+                <ScalarProperty Name="TenGV" ColumnName="TenGV" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="ThamNien" ColumnName="ThamNien" />
+                <ScalarProperty Name="HocVi" ColumnName="HocVi" />
+                <ScalarProperty Name="Luong" ColumnName="Luong" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HocViens">
+            <EntityTypeMapping TypeName="TTTA_DBModel.HocVien">
+              <MappingFragment StoreEntitySet="HocVien">
+                <ScalarProperty Name="MaHV" ColumnName="MaHV" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KetQuas">
+            <EntityTypeMapping TypeName="TTTA_DBModel.KetQua">
+              <MappingFragment StoreEntitySet="KetQua">
+                <ScalarProperty Name="MaHocVien" ColumnName="MaHocVien" />
+                <ScalarProperty Name="MaLopHoc" ColumnName="MaLopHoc" />
+                <ScalarProperty Name="MaKhoaHoc" ColumnName="MaKhoaHoc" />
+                <ScalarProperty Name="DiemGiuaKy" ColumnName="DiemGiuaKy" />
+                <ScalarProperty Name="DiemCuoiKy" ColumnName="DiemCuoiKy" />
+                <ScalarProperty Name="DiemTB" ColumnName="DiemTB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KhoaHocs">
+            <EntityTypeMapping TypeName="TTTA_DBModel.KhoaHoc">
+              <MappingFragment StoreEntitySet="KhoaHoc">
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="NgayBatDau" ColumnName="NgayBatDau" />
+                <ScalarProperty Name="SoTuanHoc" ColumnName="SoTuanHoc" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LopHocs">
+            <EntityTypeMapping TypeName="TTTA_DBModel.LopHoc">
+              <MappingFragment StoreEntitySet="LopHoc">
+                <ScalarProperty Name="MaLH" ColumnName="MaLH" />
+                <ScalarProperty Name="KhoaHoc" ColumnName="KhoaHoc" />
+                <ScalarProperty Name="MonHoc" ColumnName="MonHoc" />
+                <ScalarProperty Name="GiangVien" ColumnName="GiangVien" />
+                <ScalarProperty Name="CaHoc" ColumnName="CaHoc" />
+                <ScalarProperty Name="NgayHoc" ColumnName="NgayHoc" />
+                <ScalarProperty Name="SoLuongHV" ColumnName="SoLuongHV" />
+                <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonHocs">
+            <EntityTypeMapping TypeName="TTTA_DBModel.MonHoc">
+              <MappingFragment StoreEntitySet="MonHoc">
+                <ScalarProperty Name="MaMH" ColumnName="MaMH" />
+                <ScalarProperty Name="TenMH" ColumnName="TenMH" />
+                <ScalarProperty Name="SoGioHoc" ColumnName="SoGioHoc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NhanViens">
+            <EntityTypeMapping TypeName="TTTA_DBModel.NhanVien">
+              <MappingFragment StoreEntitySet="NhanVien">
+                <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+                <ScalarProperty Name="TenNV" ColumnName="TenNV" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="CMND" ColumnName="CMND" />
+                <ScalarProperty Name="Luong" ColumnName="Luong" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CapNhatDangNhap" FunctionName="TTTA_DBModel.Store.CapNhatDangNhap" />
+          <FunctionImportMapping FunctionImportName="CapNhatGiangVien" FunctionName="TTTA_DBModel.Store.CapNhatGiangVien" />
+          <FunctionImportMapping FunctionImportName="CapNhatHocVien" FunctionName="TTTA_DBModel.Store.CapNhatHocVien" />
+          <FunctionImportMapping FunctionImportName="CapNhatKetQua" FunctionName="TTTA_DBModel.Store.CapNhatKetQua" />
+          <FunctionImportMapping FunctionImportName="CapNhatKhoaHoc" FunctionName="TTTA_DBModel.Store.CapNhatKhoaHoc" />
+          <FunctionImportMapping FunctionImportName="CapNhatLopHoc" FunctionName="TTTA_DBModel.Store.CapNhatLopHoc" />
+          <FunctionImportMapping FunctionImportName="CapNhatMonHoc" FunctionName="TTTA_DBModel.Store.CapNhatMonHoc" />
+          <FunctionImportMapping FunctionImportName="CapNhatNhanVien" FunctionName="TTTA_DBModel.Store.CapNhatNhanVien" />
+          <FunctionImportMapping FunctionImportName="KiemTraDangNhap" FunctionName="TTTA_DBModel.Store.KiemTraDangNhap">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TTTA_DBModel.KiemTraDangNhap_Result">
+                <ScalarProperty Name="o_Mail" ColumnName="o_Mail" />
+                <ScalarProperty Name="o_MatKhau" ColumnName="o_MatKhau" />
+                <ScalarProperty Name="o_Quyen" ColumnName="o_Quyen" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ThemBienLai" FunctionName="TTTA_DBModel.Store.ThemBienLai" />
+          <FunctionImportMapping FunctionImportName="ThemDangNhap" FunctionName="TTTA_DBModel.Store.ThemDangNhap" />
+          <FunctionImportMapping FunctionImportName="ThemGiangVien" FunctionName="TTTA_DBModel.Store.ThemGiangVien" />
+          <FunctionImportMapping FunctionImportName="ThemHocVien" FunctionName="TTTA_DBModel.Store.ThemHocVien" />
+          <FunctionImportMapping FunctionImportName="ThemKetQua" FunctionName="TTTA_DBModel.Store.ThemKetQua" />
+          <FunctionImportMapping FunctionImportName="ThemKhoaHoc" FunctionName="TTTA_DBModel.Store.ThemKhoaHoc" />
+          <FunctionImportMapping FunctionImportName="ThemLopHoc" FunctionName="TTTA_DBModel.Store.ThemLopHoc" />
+          <FunctionImportMapping FunctionImportName="ThemMonHoc" FunctionName="TTTA_DBModel.Store.ThemMonHoc" />
+          <FunctionImportMapping FunctionImportName="ThemNhanVien" FunctionName="TTTA_DBModel.Store.ThemNhanVien" />
+          <FunctionImportMapping FunctionImportName="XoaBienLai" FunctionName="TTTA_DBModel.Store.XoaBienLai" />
+          <FunctionImportMapping FunctionImportName="XoaDangNhap" FunctionName="TTTA_DBModel.Store.XoaDangNhap" />
+          <FunctionImportMapping FunctionImportName="XoaGiangVien" FunctionName="TTTA_DBModel.Store.XoaGiangVien" />
+          <FunctionImportMapping FunctionImportName="XoaHocVien" FunctionName="TTTA_DBModel.Store.XoaHocVien" />
+          <FunctionImportMapping FunctionImportName="XoaKetQua" FunctionName="TTTA_DBModel.Store.XoaKetQua" />
+          <FunctionImportMapping FunctionImportName="XoaKhoaHoc" FunctionName="TTTA_DBModel.Store.XoaKhoaHoc" />
+          <FunctionImportMapping FunctionImportName="XoaLopHoc" FunctionName="TTTA_DBModel.Store.XoaLopHoc" />
+          <FunctionImportMapping FunctionImportName="XoaMonHoc" FunctionName="TTTA_DBModel.Store.XoaMonHoc" />
+          <FunctionImportMapping FunctionImportName="XoaNhanVien" FunctionName="TTTA_DBModel.Store.XoaNhanVien" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

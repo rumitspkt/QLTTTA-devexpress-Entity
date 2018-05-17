@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TTTA_DBModelStoreContainer" CdmEntityContainer="TTTA_DBEntities">
+    <EntitySetMapping Name="BienLaiHocPhis">
+      <EntityTypeMapping TypeName="TTTA_DBModel.BienLaiHocPhi">
+        <MappingFragment StoreEntitySet="BienLaiHocPhi">
+          <ScalarProperty Name="MaHocVien" ColumnName="MaHocVien" />
+          <ScalarProperty Name="MaLopHoc" ColumnName="MaLopHoc" />
+          <ScalarProperty Name="MaKhoaHoc" ColumnName="MaKhoaHoc" />
+          <ScalarProperty Name="HoaDon" ColumnName="HoaDon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DangNhaps">
+      <EntityTypeMapping TypeName="TTTA_DBModel.DangNhap">
+        <MappingFragment StoreEntitySet="DangNhap">
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+          <ScalarProperty Name="QuyenDangNhap" ColumnName="QuyenDangNhap" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GiangViens">
+      <EntityTypeMapping TypeName="TTTA_DBModel.GiangVien">
+        <MappingFragment StoreEntitySet="GiangVien">
+          <ScalarProperty Name="MaGV" ColumnName="MaGV" />
+          <ScalarProperty Name="TenGV" ColumnName="TenGV" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="ThamNien" ColumnName="ThamNien" />
+          <ScalarProperty Name="HocVi" ColumnName="HocVi" />
+          <ScalarProperty Name="Luong" ColumnName="Luong" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HocViens">
+      <EntityTypeMapping TypeName="TTTA_DBModel.HocVien">
+        <MappingFragment StoreEntitySet="HocVien">
+          <ScalarProperty Name="MaHV" ColumnName="MaHV" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KetQuas">
+      <EntityTypeMapping TypeName="TTTA_DBModel.KetQua">
+        <MappingFragment StoreEntitySet="KetQua">
+          <ScalarProperty Name="MaHocVien" ColumnName="MaHocVien" />
+          <ScalarProperty Name="MaLopHoc" ColumnName="MaLopHoc" />
+          <ScalarProperty Name="MaKhoaHoc" ColumnName="MaKhoaHoc" />
+          <ScalarProperty Name="DiemGiuaKy" ColumnName="DiemGiuaKy" />
+          <ScalarProperty Name="DiemCuoiKy" ColumnName="DiemCuoiKy" />
+          <ScalarProperty Name="DiemTB" ColumnName="DiemTB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhoaHocs">
+      <EntityTypeMapping TypeName="TTTA_DBModel.KhoaHoc">
+        <MappingFragment StoreEntitySet="KhoaHoc">
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="NgayBatDau" ColumnName="NgayBatDau" />
+          <ScalarProperty Name="SoTuanHoc" ColumnName="SoTuanHoc" />
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LopHocs">
+      <EntityTypeMapping TypeName="TTTA_DBModel.LopHoc">
+        <MappingFragment StoreEntitySet="LopHoc">
+          <ScalarProperty Name="MaLH" ColumnName="MaLH" />
+          <ScalarProperty Name="KhoaHoc" ColumnName="KhoaHoc" />
+          <ScalarProperty Name="MonHoc" ColumnName="MonHoc" />
+          <ScalarProperty Name="GiangVien" ColumnName="GiangVien" />
+          <ScalarProperty Name="CaHoc" ColumnName="CaHoc" />
+          <ScalarProperty Name="NgayHoc" ColumnName="NgayHoc" />
+          <ScalarProperty Name="SoLuongHV" ColumnName="SoLuongHV" />
+          <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MonHocs">
+      <EntityTypeMapping TypeName="TTTA_DBModel.MonHoc">
+        <MappingFragment StoreEntitySet="MonHoc">
+          <ScalarProperty Name="MaMH" ColumnName="MaMH" />
+          <ScalarProperty Name="TenMH" ColumnName="TenMH" />
+          <ScalarProperty Name="SoGioHoc" ColumnName="SoGioHoc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NhanViens">
+      <EntityTypeMapping TypeName="TTTA_DBModel.NhanVien">
+        <MappingFragment StoreEntitySet="NhanVien">
+          <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+          <ScalarProperty Name="TenNV" ColumnName="TenNV" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+          <ScalarProperty Name="CMND" ColumnName="CMND" />
+          <ScalarProperty Name="Luong" ColumnName="Luong" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CapNhatDangNhap" FunctionName="TTTA_DBModel.Store.CapNhatDangNhap" />
+    <FunctionImportMapping FunctionImportName="CapNhatGiangVien" FunctionName="TTTA_DBModel.Store.CapNhatGiangVien" />
+    <FunctionImportMapping FunctionImportName="CapNhatHocVien" FunctionName="TTTA_DBModel.Store.CapNhatHocVien" />
+    <FunctionImportMapping FunctionImportName="CapNhatKetQua" FunctionName="TTTA_DBModel.Store.CapNhatKetQua" />
+    <FunctionImportMapping FunctionImportName="CapNhatKhoaHoc" FunctionName="TTTA_DBModel.Store.CapNhatKhoaHoc" />
+    <FunctionImportMapping FunctionImportName="CapNhatLopHoc" FunctionName="TTTA_DBModel.Store.CapNhatLopHoc" />
+    <FunctionImportMapping FunctionImportName="CapNhatMonHoc" FunctionName="TTTA_DBModel.Store.CapNhatMonHoc" />
+    <FunctionImportMapping FunctionImportName="CapNhatNhanVien" FunctionName="TTTA_DBModel.Store.CapNhatNhanVien" />
+    <FunctionImportMapping FunctionImportName="KiemTraDangNhap" FunctionName="TTTA_DBModel.Store.KiemTraDangNhap">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TTTA_DBModel.KiemTraDangNhap_Result">
+          <ScalarProperty Name="o_Mail" ColumnName="o_Mail" />
+          <ScalarProperty Name="o_MatKhau" ColumnName="o_MatKhau" />
+          <ScalarProperty Name="o_Quyen" ColumnName="o_Quyen" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ThemBienLai" FunctionName="TTTA_DBModel.Store.ThemBienLai" />
+    <FunctionImportMapping FunctionImportName="ThemDangNhap" FunctionName="TTTA_DBModel.Store.ThemDangNhap" />
+    <FunctionImportMapping FunctionImportName="ThemGiangVien" FunctionName="TTTA_DBModel.Store.ThemGiangVien" />
+    <FunctionImportMapping FunctionImportName="ThemHocVien" FunctionName="TTTA_DBModel.Store.ThemHocVien" />
+    <FunctionImportMapping FunctionImportName="ThemKetQua" FunctionName="TTTA_DBModel.Store.ThemKetQua" />
+    <FunctionImportMapping FunctionImportName="ThemKhoaHoc" FunctionName="TTTA_DBModel.Store.ThemKhoaHoc" />
+    <FunctionImportMapping FunctionImportName="ThemLopHoc" FunctionName="TTTA_DBModel.Store.ThemLopHoc" />
+    <FunctionImportMapping FunctionImportName="ThemMonHoc" FunctionName="TTTA_DBModel.Store.ThemMonHoc" />
+    <FunctionImportMapping FunctionImportName="ThemNhanVien" FunctionName="TTTA_DBModel.Store.ThemNhanVien" />
+    <FunctionImportMapping FunctionImportName="XoaBienLai" FunctionName="TTTA_DBModel.Store.XoaBienLai" />
+    <FunctionImportMapping FunctionImportName="XoaDangNhap" FunctionName="TTTA_DBModel.Store.XoaDangNhap" />
+    <FunctionImportMapping FunctionImportName="XoaGiangVien" FunctionName="TTTA_DBModel.Store.XoaGiangVien" />
+    <FunctionImportMapping FunctionImportName="XoaHocVien" FunctionName="TTTA_DBModel.Store.XoaHocVien" />
+    <FunctionImportMapping FunctionImportName="XoaKetQua" FunctionName="TTTA_DBModel.Store.XoaKetQua" />
+    <FunctionImportMapping FunctionImportName="XoaKhoaHoc" FunctionName="TTTA_DBModel.Store.XoaKhoaHoc" />
+    <FunctionImportMapping FunctionImportName="XoaLopHoc" FunctionName="TTTA_DBModel.Store.XoaLopHoc" />
+    <FunctionImportMapping FunctionImportName="XoaMonHoc" FunctionName="TTTA_DBModel.Store.XoaMonHoc" />
+    <FunctionImportMapping FunctionImportName="XoaNhanVien" FunctionName="TTTA_DBModel.Store.XoaNhanVien" />
+  </EntityContainerMapping>
+</Mapping>
